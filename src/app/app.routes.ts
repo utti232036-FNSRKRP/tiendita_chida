@@ -1,3 +1,4 @@
+// src/app/app.routes.ts
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
