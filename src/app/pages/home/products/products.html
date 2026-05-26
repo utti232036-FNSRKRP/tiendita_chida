@@ -1,0 +1,42 @@
+<div class="card-container">
+  <div class="card-header">
+    <div class="header-title">
+      <h2>Usuarios Activos</h2>
+      <p>Gestión y estado de los miembros del equipo</p>
+    </div>
+    <button class="btn-primary" (click)="onAddNew()">+ Agregar</button>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="minimal-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Rol</th>
+          <th>Email</th>
+          <th>Estado</th>
+          <th class="text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>
+            <div class="user-info">
+              <div class="avatar">{{ user.name.charAt(0) }}</div>
+              <span>{{ user.name }}</span>
+            </div>
+          </td>
+          <td>{{ user.role }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+
+          </td>
+          <td class="text-right">
+            <button class="btn-icon" (click)="onEdit(user.id)" title="Editar">✏️</button>
+            <button class="btn-icon btn-icon-danger" (click)="onDelete(user.id)" title="Eliminar">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

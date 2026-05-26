@@ -1,0 +1,170 @@
+/* Variables de diseño para fácil mantenimiento */
+:root {
+  --bg-card: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #f1f5f9;
+  --hover-row: #f8fafc;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --success-bg: #dcfce7;
+  --success-text: #166534;
+  --neutral-bg: #f1f5f9;
+  --neutral-text: #475569;
+  --danger: #ef4444;
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --radius: 12px;
+}
+
+/* Contenedor de la Tarjeta */
+.card-container {
+  background-color: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-w-4xl: 100%;
+  margin: 2rem auto;
+}
+
+/* Encabezado de la Tarjeta */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.header-title p {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Tabla Responsiva */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Estilos de la Tabla */
+.minimal-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.minimal-table th {
+  background-color: var(--hover-row);
+  color: var(--text-muted);
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.minimal-table td {
+  padding: 1rem 1.5rem;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.minimal-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.minimal-table tbody tr:hover {
+  background-color: var(--hover-row);
+}
+
+.minimal-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Componentes internos (Avatares, Badges, Botones) */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #e0e7ff;
+  color: var(--primary);
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+}
+
+.badge-neutral {
+  background-color: var(--neutral-bg);
+  color: var(--neutral-text);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.btn-icon:hover {
+  background-color: var(--border-color);
+}
+
+.btn-icon-danger:hover {
+  background-color: #fee2e2;
+}
+
+.text-right {
+  text-align: right;
+}
