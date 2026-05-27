@@ -1,10 +1,10 @@
 <div class="card-container">
   <div class="card-header">
     <div class="header-title">
-      <h2>Usuarios Activos</h2>
-      <p>Gestión y estado de los miembros del equipo</p>
+      <h2>Gestión de Productos</h2>
+      <p>Administración del catálogo de productos</p>
     </div>
-    <button class="btn-primary" (click)="onAddNew()">+ Agregar</button>
+    <button class="btn-primary" (click)="onAddNew()">+ Agregar Producto</button>
   </div>
   
   <div class="table-responsive">
@@ -12,31 +12,149 @@
       <thead>
         <tr>
           <th>Nombre</th>
-          <th>Rol</th>
-          <th>Email</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Stock</th>
           <th>Estado</th>
           <th class="text-right">Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let product of products">
           <td>
-            <div class="user-info">
-              <div class="avatar">{{ user.name.charAt(0) }}</div>
-              <span>{{ user.name }}</span>
+            <div class="product-info">
+              <div class="avatar">{{ product.name.charAt(0) }}</div>
+              <span>{{ product.name }}</span>
             </div>
           </td>
-          <td>{{ user.role }}</td>
-          <td>{{ user.email }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ product.stock }} unidades</td>
           <td>
-
+            <span [class]="'status-badge ' + (product.status === 'Disponible' ? 'status-active' : 'status-inactive')">
+              {{ product.status }}
+            </span>
           </td>
           <td class="text-right">
-            <button class="btn-icon" (click)="onEdit(user.id)" title="Editar">✏️</button>
-            <button class="btn-icon btn-icon-danger" (click)="onDelete(user.id)" title="Eliminar">🗑️</button>
+            <button class="btn-icon" (click)="onEdit(product.id)" title="Editar">✏️</button>
+            <button class="btn-icon btn-icon-danger" (click)="onDelete(product.id)" title="Eliminar">🗑️</button>
           </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal para agregar/editar producto -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ isEditing ? 'Editar Producto' : 'Agregar Nuevo Producto' }}</h3>
+      <button class="modal-close" (click)="closeModal()">×</button>
+    </div>
+    
+    <div class="modal-body">
+      <form #productForm="ngForm">
+        <div class="form-group">
+          <label for="productName">Nombre del producto *</label>
+          <input 
+            type="text" 
+            id="productName" 
+            name="productName" 
+            [(ngModel)]="currentProduct.name"
+            required
+            minlength="3"
+            #nameInput="ngModel"
+            placeholder="Ej: Laptop Gaming"
+          />
+          <div *ngIf="nameInput.invalid && nameInput.touched" class="error-message">
+            El nombre es requerido y debe tener al menos 3 caracteres.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría *</label>
+          <select 
+            id="category" 
+            name="category" 
+            [(ngModel)]="currentProduct.category"
+            required
+            #categorySelect="ngModel"
+          >
+            <option value="">Seleccionar categoría</option>
+            <option value="Electrónica">Electrónica</option>
+            <option value="Ropa">Ropa</option>
+            <option value="Hogar">Hogar</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Libros">Libros</option>
+          </select>
+          <div *ngIf="categorySelect.invalid && categorySelect.touched" class="error-message">
+            Selecciona una categoría.
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="price">Precio *</label>
+            <input 
+              type="number" 
+              id="price" 
+              name="price" 
+              [(ngModel)]="currentProduct.price"
+              required
+              min="0.01"
+              step="0.01"
+              #priceInput="ngModel"
+              placeholder="0.00"
+            />
+            <div *ngIf="priceInput.invalid && priceInput.touched" class="error-message">
+              Precio válido requerido (mínimo 0.01).
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="stock">Stock *</label>
+            <input 
+              type="number" 
+              id="stock" 
+              name="stock" 
+              [(ngModel)]="currentProduct.stock"
+              required
+              min="0"
+              step="1"
+              #stockInput="ngModel"
+              placeholder="0"
+            />
+            <div *ngIf="stockInput.invalid && stockInput.touched" class="error-message">
+              Stock debe ser un número válido (mínimo 0).
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Estado *</label>
+          <select 
+            id="status" 
+            name="status" 
+            [(ngModel)]="currentProduct.status"
+            required
+          >
+            <option value="Disponible">Disponible</option>
+            <option value="Agotado">Agotado</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="closeModal()">Cancelar</button>
+      <button 
+        class="btn-primary" 
+        (click)="saveProduct()"
+        [disabled]="productForm.invalid"
+      >
+        {{ isEditing ? 'Actualizar' : 'Agregar' }}
+      </button>
+    </div>
   </div>
 </div>
