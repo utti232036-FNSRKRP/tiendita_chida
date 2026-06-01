@@ -1,11 +1,9 @@
-
-
-/* Estilos base */
+/* Estilos base (todo igual excepto lo nuevo al final) */
 .card-container {
   background: var(--bg-primary);
-  border-radius: 16px; /* Bordes un poco más suaves */
+  border-radius: 16px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05); /* Sombra elegante */
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
   padding: 32px;
   margin: 24px;
 }
@@ -24,7 +22,7 @@
   color: var(--text-main);
   font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: -0.02em; /* Estilo tipográfico moderno */
+  letter-spacing: -0.02em;
 }
 
 .header-title p {
@@ -33,7 +31,6 @@
   font-size: 0.875rem;
 }
 
-/* Botones Premium */
 .btn-primary {
   background-color: var(--primary);
   color: white;
@@ -73,7 +70,6 @@
   background-color: #e2e8f0;
 }
 
-/* Tabla Minimalista y Limpia */
 .table-responsive {
   overflow-x: auto;
 }
@@ -103,29 +99,28 @@
 }
 
 .minimal-table tr:hover td {
-  background-color: #f8fafc; /* Efecto sutil al pasar el mouse */
+  background-color: #f8fafc;
 }
 
 .text-right {
   text-align: right;
 }
 
-.product-info, .user-info {
+.text-center {
+  text-align: center;
+}
+
+.product-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.user-info span {
-  font-weight: 500;
-  color: var(--text-main);
-}
-
 .avatar {
   width: 34px;
   height: 34px;
-  background-color: #eff6ff; /* Azul pastel */
-  color: var(--primary);    /* Texto azul fuerte */
+  background-color: #eff6ff;
+  color: var(--primary);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -136,10 +131,9 @@
   border: 1px solid #dbeafe;
 }
 
-/* Badges estilizados */
 .status-badge {
   padding: 4px 10px;
-  border-radius: 6px; /* Menos ovalado, más moderno */
+  border-radius: 6px;
   font-size: 0.75rem;
   font-weight: 600;
   display: inline-block;
@@ -176,19 +170,47 @@
   color: var(--danger-text);
 }
 
-/* Modal de Alta Gama */
+/* 🔍 ESTILOS NUEVOS PARA EL BUSCADOR (manteniendo coherencia visual) */
+.search-container {
+  margin-bottom: 24px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  background-color: var(--bg-primary);
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #94a3b8;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Modal y resto (sin cambios) */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 23, 42, 0.3); /* Capa oscura azulada translúcida */
+  background-color: rgba(15, 23, 42, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(8px); /* Más desenfoque para mayor elegancia */
+  backdrop-filter: blur(8px);
 }
 
 .modal-container {
@@ -199,7 +221,7 @@
   max-height: 85vh;
   overflow-y: auto;
   box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.15);
-  animation: modalSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1); /* Animación suavizada */
+  animation: modalSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalSlideIn {
@@ -276,10 +298,6 @@ input, select {
   box-sizing: border-box;
 }
 
-input::placeholder {
-  color: #94a3b8;
-}
-
 input:focus, select:focus {
   outline: none;
   border-color: #3b82f6;
@@ -297,23 +315,29 @@ input:focus, select:focus {
   justify-content: flex-end;
   gap: 12px;
   padding: 20px 28px;
-  background-color: var(--bg-secondary); /* Sección inferior diferenciada */
+  background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
 }
 
-/* Ajustes Responsive */
 @media (max-width: 640px) {
   .card-container {
     margin: 16px;
     padding: 20px;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
     gap: 0;
   }
-  
+
   .modal-container {
     width: 92%;
   }
+
+  .search-input {
+    max-width: 100%;
+  }
 }
+
+
+

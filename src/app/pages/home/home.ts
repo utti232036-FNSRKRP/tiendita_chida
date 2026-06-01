@@ -7,8 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styles: `
     :host {
       display: block;
+      font-family: Arial, sans-serif;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home {}
+
