@@ -92,6 +92,12 @@ export class Products {
     }
   }
 
+  getProductImage(id: number): string {
+  // Usa LoremFlick o cualquier servicio de placeholder
+  return `https://loremflick.com/300/200?random=${id}`;
+  // O si prefieres imágenes locales: `assets/images/product-${id}.jpg`
+}
+
   // Guardar producto (crear o actualizar)
   saveProduct(): void {
     if (!this.currentProduct.name || !this.currentProduct.category || 
